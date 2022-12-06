@@ -1,0 +1,28 @@
+
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h1>Login</h1>
+</div>
+
+<div class="card-body">
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+</ul>
+{% endif %}
+    <form   action="" method="POST">
+        {% csrf_token %}
+        <label>Username</label>
+        <input type="text" class="inputFields" id="username" name="username"   required/>
+        <label>Password</label>
+        <input type="password" class="inputFields" id="password" name="password"  required/>
+        <input class="button" id="btn" type="submit" >
+    </form>
+    <p>Don't have an account? <a href="signup">Register</a></p>
+
+</div>
+{% endblock content %}

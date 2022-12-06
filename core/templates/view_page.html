@@ -1,0 +1,50 @@
+
+
+{% extends 'main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <div><h1>Hello  {{ user.username }} </h1></div>
+
+                <a href="signout">log out</a>
+
+</div>
+<div id="search-add-wrapper">
+        <form method="POST" style="display: flex;" action="search">
+            {% csrf_token %}
+        <input type='text' name='search-area' placeholder="Search your task" value="">
+        <input class="button" type="submit" value='Search'>
+    </form>
+        <a id="add-link" href="add_todo">&#x2b;</a>
+</div>
+
+<!-- Hidden form. Form submits new item positions -->
+{% for task in todo %}
+<div id="tasklist" class="task-items-wrapper">
+    <div class="task-wrapper" data-position="#">
+        <div class="task-title">
+            <div class="task-complete-icon" >
+            </div>
+            {% if task.complete %}
+			 <a class="list" href="{% url 'update_task' task.id %}"><strike>{{task.title}}</strike></a>
+			{% else %}
+            <a class="list" href="{% url 'update_task' task.id %}"><span>{{task.title}}</span></a>
+			{% endif %}
+
+        </div>
+        <div class="task-controls">
+            <a class="date">{{i.date}}</a>
+            <a class="delete-link" href="{%url 'delete_list' id=task.id %}">&#215;</a>
+            <span class="handle"></span>
+        </div>
+    </div>
+        {% empty %}
+    <div style="text-align: center; padding-bottom: 10px; line-height: 1em;">
+        <h3>No new tasks are created.</h3>
+        <h3>Create a <a style="text-decoration: none; color: #e53935;" href="add_todo">New task</a> ! </h3>
+    </div>
+</div>
+
+     {% endfor %}
+
+{% endblock content %}

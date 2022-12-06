@@ -1,0 +1,19 @@
+
+
+{% extends 'main.html' %}
+{% block content %}
+
+
+<div class="header-bar">
+        <a href="/home">back</a>
+</div>
+<div class="card-body">
+    <form method="POST" action="" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input style="margin-top:10px ;" class="button" type="submit" value="ADD">
+    </form>
+</div>
+
+
+{% endblock content %}
