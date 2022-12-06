@@ -1,1 +1,1 @@
-web: gunicorn to_do_app.wsgi:application --log-file - --log-level debug
+web: python manage.py runserver 0.0.0.0:$PORT --noreload
